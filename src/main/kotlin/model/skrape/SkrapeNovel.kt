@@ -2,6 +2,7 @@ package com.jarvis.acg.api.model.skrape
 
 class SkrapeNovel(
     var title: String? = "",
+    var author: String? = "",
     var volumeList: ArrayList<SkrapeNovelVolume>? = arrayListOf()
 )
 

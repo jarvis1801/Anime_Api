@@ -20,8 +20,8 @@ class SkrapeUtil {
 
         val skrapeObject = SkrapeNovel()
         val elementList = getNovelVolumeElementList(skrapeDoc, titleNotContainList)
-        val title = getNovelTitle(skrapeDoc)
-        skrapeObject.title = title
+        skrapeObject.title = getNovelTitle(skrapeDoc)
+        skrapeObject.author = getNovelAuthor(skrapeDoc)
 
 
         return getNovelVolumeSkrapeObjectList(skrapeObject, elementList)
@@ -74,7 +74,10 @@ class SkrapeUtil {
 
     private fun getNovelTitle(skrapeDoc: Doc): String? {
         return skrapeDoc.document.getElementsByTag("meta").find { it.attr("name") == "name" }?.attr("content")
+    }
 
+    private fun getNovelAuthor(skrapeDoc: Doc): String? {
+        return skrapeDoc.document.getElementsByTag("meta").find { it.attr("name") == "author" }?.attr("content")
     }
 
     private fun getNovelChapterElement(skrapeDoc: Doc): Element {
@@ -93,6 +96,15 @@ class SkrapeUtil {
             it.getElementsByTag("span").remove()
             it.getElementsByTag("a")
         }.toCollection(ArrayList())
+
+//        val elementList = arrayListOf<Elements>()
+//        skrapeDoc.document.allElements.forEach {
+//            if (it.classNames().contains("episode_li")) {
+//                if (it.getElementsByTag("a") != null) {
+//                    elementList.add(it.getElementsByTag("a"))
+//                }
+//            }
+//        }
 
         if (titleNotContainList != null) {
             val removeList = arrayListOf<Elements>()
