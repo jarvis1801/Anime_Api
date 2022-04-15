@@ -11,20 +11,10 @@ import io.ktor.routing.*
 import org.litote.kmongo.`in`
 import org.litote.kmongo.updateOneById
 
-object NovelRoute : BaseEntryRoute<Novel, NovelResponse>() {
+object NovelRoute : BaseEntryRoute<Novel>() {
     override var modelEntry: MongoCollection<Novel> = KMongoClient.novelEntry
     override var entryPathSection: String = "novel"
     override var translationList: List<String>? = arrayListOf("Extra_name")
-
-    override suspend fun getResponseSpecialHandling(obj: Novel): NovelResponse {
-        val response = NovelResponse(obj)
-        response.library_list = LibraryRoute.getEntryListByIdList(obj.library_id_list)
-        response.painter_list = PainterRoute.getEntryListByIdList(obj.painter_id_list)
-        response.publishing_house_list = PublishingHouseRoute.getEntryListByIdList(obj.publishing_house_id_list)
-        response.author_list = AuthorRoute.getEntryListByIdList(obj.author_id_list)
-        response.work = WorkRoute.getEntryObjectResponseById(obj.work_id)
-        return response
-    }
 
     override fun initExtraRoute(route: Route) = route {
         get("list/tag/{id}") {
@@ -35,7 +25,7 @@ object NovelRoute : BaseEntryRoute<Novel, NovelResponse>() {
     private suspend fun getByTagIdList(call: ApplicationCall) {
         call.parameters["id"]?.let { id ->
             val idList = id.split("_")
-            WorkRoute.getEntryObjectListByStatement(Work::tag_id_list `in` idList).map { it.id ?: "" }.toList()
+            WorkRoute.getEntryObjectListByStatement(Work::tag_id_list `in` idList).map { it._id }.toList()
                 .let { list -> getResponseListByStatement(Novel::work_id `in` list, call) }
         }
     }

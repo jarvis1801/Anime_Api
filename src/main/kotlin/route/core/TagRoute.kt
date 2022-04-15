@@ -7,7 +7,7 @@ import com.jarvis.acg.api.route.base.BaseEntryRoute
 import com.mongodb.client.MongoCollection
 import io.ktor.routing.*
 
-object TagRoute : BaseEntryRoute<Tag, TagResponse>() {
+object TagRoute : BaseEntryRoute<Tag>() {
     override var modelEntry: MongoCollection<Tag> = KMongoClient.tagEntry
     override var entryPathSection: String = "tag"
     override var translationList: List<String>? = arrayListOf("Name")
@@ -16,9 +16,5 @@ object TagRoute : BaseEntryRoute<Tag, TagResponse>() {
 
     override fun createNewGenericObject(): Tag {
         return Tag()
-    }
-
-    override suspend fun getResponseSpecialHandling(obj: Tag): TagResponse {
-        return TagResponse(obj)
     }
 }

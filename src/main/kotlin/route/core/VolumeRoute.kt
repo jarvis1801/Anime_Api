@@ -10,16 +10,10 @@ import io.ktor.routing.*
 import org.bson.conversions.Bson
 import org.litote.kmongo.updateOneById
 
-object VolumeRoute : BaseEntryRoute<Volume, VolumeResponse>() {
+object VolumeRoute : BaseEntryRoute<Volume>() {
     override var modelEntry: MongoCollection<Volume> = KMongoClient.volumeEntry
     override var entryPathSection: String = "volume"
     override var translationList: List<String>? = arrayListOf("Name", "Sticky_header")
-
-    override suspend fun getResponseSpecialHandling(obj: Volume): VolumeResponse {
-        val response = VolumeResponse(obj)
-        response.chapter_list = ChapterRoute.getEntryListByIdList(obj.chapter_id_list)
-        return response
-    }
 
     override fun initExtraRoute(route: Route) { }
 

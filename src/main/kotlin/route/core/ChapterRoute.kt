@@ -12,15 +12,13 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import org.litote.kmongo.*
 
-object ChapterRoute : BaseEntryRoute<Chapter, ChapterResponse>() {
+object ChapterRoute : BaseEntryRoute<Chapter>() {
     override var modelEntry: MongoCollection<Chapter> = KMongoClient.chapterEntry
     override var entryPathSection: String = "chapter"
     override var translationList: List<String>? = arrayListOf("Name", "SectionName", "Content")
     override var trimList: List<String>? = arrayListOf("Content")
 
     override var isEnableDefaultDeleteById: Boolean = false
-
-    override suspend fun getResponseSpecialHandling(obj: Chapter): ChapterResponse { return ChapterResponse(obj) }
 
     override fun initExtraRoute(route: Route) {
         deleteById(route)
@@ -35,7 +33,7 @@ object ChapterRoute : BaseEntryRoute<Chapter, ChapterResponse>() {
                     if (VolumeRoute.deleteVolumeIdAfterDeleteChapter(id, statement)) {
                         modelEntry.deleteOneById(id).let { result ->
                             if (result.deletedCount > 0) {
-                                return@delete call.respondText { getResponseSpecialHandling(it).getResponse() }
+                                return@delete call.respondText { it.getResponse() }
                             }
                         }
                     }

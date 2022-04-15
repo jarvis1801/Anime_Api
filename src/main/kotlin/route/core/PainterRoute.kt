@@ -7,14 +7,10 @@ import com.jarvis.acg.api.route.base.BaseEntryRoute
 import com.mongodb.client.MongoCollection
 import io.ktor.routing.*
 
-object PainterRoute : BaseEntryRoute<Painter, PainterResponse>() {
+object PainterRoute : BaseEntryRoute<Painter>() {
     override var modelEntry: MongoCollection<Painter> = KMongoClient.painterEntry
     override var entryPathSection: String = "painter"
     override var translationList: List<String>? = arrayListOf("Name", "Info")
-
-    override suspend fun getResponseSpecialHandling(obj: Painter): PainterResponse {
-        return PainterResponse(obj)
-    }
 
     override fun initExtraRoute(route: Route) {}
 

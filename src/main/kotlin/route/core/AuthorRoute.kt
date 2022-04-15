@@ -7,7 +7,7 @@ import com.jarvis.acg.api.route.base.BaseEntryRoute
 import com.mongodb.client.MongoCollection
 import io.ktor.routing.*
 
-object AuthorRoute : BaseEntryRoute<Author, AuthorResponse>() {
+object AuthorRoute : BaseEntryRoute<Author>() {
 
     override var modelEntry: MongoCollection<Author> = KMongoClient.authorEntry
     override var entryPathSection: String = "author"
@@ -16,8 +16,4 @@ object AuthorRoute : BaseEntryRoute<Author, AuthorResponse>() {
     override fun initExtraRoute(route: Route) { }
 
     override fun createNewGenericObject(): Author { return Author::class.java.newInstance() }
-
-    override suspend fun getResponseSpecialHandling(obj: Author): AuthorResponse {
-        return AuthorResponse(obj)
-    }
 }

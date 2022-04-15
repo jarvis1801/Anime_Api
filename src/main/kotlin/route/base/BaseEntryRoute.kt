@@ -19,7 +19,7 @@ import org.litote.kmongo.`in`
 import org.litote.kmongo.findOne
 import org.litote.kmongo.findOneById
 
-abstract class BaseEntryRoute<E : BaseObject<E>, R : BaseResponse> : BaseRoute(), BaseEntryRouteInterface<E> {
+abstract class BaseEntryRoute<E : BaseObject<E>> : BaseRoute(), BaseEntryRouteInterface<E> {
 
     protected abstract var modelEntry: MongoCollection<E>
     protected abstract var entryPathSection: String
@@ -94,12 +94,10 @@ abstract class BaseEntryRoute<E : BaseObject<E>, R : BaseResponse> : BaseRoute()
         }
     }
 
-    suspend fun getEntryObjectResponseById(id: String?) : R? {
-        id?.let { return getEntryById(id)?.let { getResponseSpecialHandling(it) } }
+    suspend fun getEntryObjectResponseById(id: String?) : E? {
+        id?.let { return getEntryById(id) }
         return null
     }
-
-    abstract suspend fun getResponseSpecialHandling(obj: E): R
 
     suspend fun getResponseById(id: String?, call: ApplicationCall, statusCode: HttpStatusCode = HttpStatusCode.OK) {
         getEntryObjectResponseById(id)?.let {
@@ -117,16 +115,16 @@ abstract class BaseEntryRoute<E : BaseObject<E>, R : BaseResponse> : BaseRoute()
         return null
     }
 
-    suspend fun getEntryList() : List<R> {
+    suspend fun getEntryList() : List<E> {
         modelEntry.find().toList().let { list ->
-            return list.map { obj -> getResponseSpecialHandling(obj) }
+            return list
         }
     }
 
-    suspend fun getEntryListByIdList(idList: List<String>?) : List<R>? {
+    suspend fun getEntryListByIdList(idList: List<String>?) : List<E>? {
         idList?.takeIf { it.isNotEmpty() }?.let {
             modelEntry.find(BaseObject<*>::_id `in` idList).toList().let { list ->
-                return list.map { obj -> getResponseSpecialHandling(obj) }
+                return list
             }
         }
         return null
@@ -162,8 +160,8 @@ abstract class BaseEntryRoute<E : BaseObject<E>, R : BaseResponse> : BaseRoute()
         }
     }
 
-    suspend fun getEntryObjectListByStatement(statement: Bson) : List<R> {
-        return modelEntry.find(statement).toList().let { list -> list.map { obj -> getResponseSpecialHandling(obj) } }
+    suspend fun getEntryObjectListByStatement(statement: Bson) : List<E> {
+        return modelEntry.find(statement).toList()
     }
 
     suspend fun performDeleteAndGetResponse(idList: List<String>, call: ApplicationCall) {

@@ -7,14 +7,11 @@ import com.jarvis.acg.api.route.base.BaseEntryRoute
 import com.mongodb.client.MongoCollection
 import io.ktor.routing.*
 
-object LibraryRoute : BaseEntryRoute<Library, LibraryResponse>() {
+object LibraryRoute : BaseEntryRoute<Library>() {
     override var modelEntry: MongoCollection<Library> = KMongoClient.libraryEntry
     override var entryPathSection: String = "library"
     override var translationList: List<String>? = arrayListOf("Name")
 
-    override suspend fun getResponseSpecialHandling(obj: Library): LibraryResponse {
-        return LibraryResponse(obj)
-    }
 
     override fun initExtraRoute(route: Route) {}
 

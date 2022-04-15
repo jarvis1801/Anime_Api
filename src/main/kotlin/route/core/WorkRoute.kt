@@ -7,7 +7,7 @@ import com.jarvis.acg.api.route.base.BaseEntryRoute
 import com.mongodb.client.MongoCollection
 import io.ktor.routing.*
 
-object WorkRoute : BaseEntryRoute<Work, WorkResponse>() {
+object WorkRoute : BaseEntryRoute<Work>() {
 
     override var modelEntry: MongoCollection<Work> = KMongoClient.workEntry
     override var entryPathSection: String = "work"
@@ -16,10 +16,4 @@ object WorkRoute : BaseEntryRoute<Work, WorkResponse>() {
     override fun initExtraRoute(route: Route) {}
 
     override fun createNewGenericObject(): Work { return Work() }
-
-    override suspend fun getResponseSpecialHandling(obj: Work): WorkResponse {
-        val response = WorkResponse(obj)
-        response.tag_list = TagRoute.getEntryListByIdList(obj.tag_id_list)
-        return response
-    }
 }
