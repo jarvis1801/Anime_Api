@@ -2,7 +2,6 @@ package com.jarvis.acg.api.route.base
 
 import com.jarvis.acg.api.kmongo.model.base.BaseObject
 import com.jarvis.acg.api.model.SubPathEndpoint
-import com.jarvis.acg.api.model.response.base.BaseResponse
 import com.jarvis.acg.api.util.ExtensionUtil.getResponse
 import com.jarvis.acg.api.util.ModelUtil
 import com.jarvis.acg.api.util.TranslationUtil
@@ -46,6 +45,10 @@ abstract class BaseEntryRoute<E : BaseObject<E>> : BaseRoute(), BaseEntryRouteIn
 
             get("list") { getResponseList(call) }
 
+            get("list/{idList}") {
+                getListByIdList(call)
+            }
+
             subPathEndpointList?.takeUnless { it.isEmpty() }?.let { list ->
                 list.forEach { obj ->
                     handleExtraEndpoint(obj, this)
@@ -53,6 +56,13 @@ abstract class BaseEntryRoute<E : BaseObject<E>> : BaseRoute(), BaseEntryRouteIn
             }
 
             initExtraRoute(this)
+        }
+    }
+
+    suspend fun getListByIdList(call: ApplicationCall) = coroutineScope {
+        call.parameters["idList"]?.let { id ->
+            val idList = id.split("_")
+            getResponseListByStatement(BaseObject<*>::_id `in` idList, call)
         }
     }
 
