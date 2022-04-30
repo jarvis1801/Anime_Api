@@ -1,5 +1,7 @@
 package com.jarvis.acg.api.util
 
+import com.jarvis.acg.api.model.file.BaseFile
+import com.jarvis.acg.api.model.file.Image
 import com.jarvis.acg.api.util.ExtensionUtil.replaceBreakLine
 import com.jarvis.acg.api.util.ExtensionUtil.replaceWhiteSpace
 import io.ktor.http.content.*
@@ -19,7 +21,12 @@ class ModelUtil {
                     }
                     is PartData.FileItem -> {
                         // return fileItem
-                        formMapping[key] = partData
+                        val fileMap = formMapping[key] as ArrayList<PartData.FileItem>?
+                        if (fileMap.isNullOrEmpty()) {
+                            formMapping[key] = arrayListOf<PartData.FileItem>().apply { add(partData) }
+                        } else {
+                            (formMapping[key] as ArrayList<PartData.FileItem>).add(partData)
+                        }
                     }
                     is PartData.BinaryItem -> {}
                 }
@@ -28,13 +35,25 @@ class ModelUtil {
         return formMapping
     }
 
-    suspend fun requestFileHandling(formMapping: Map<String, Any?>, fileNameList: List<String>) {
+    suspend fun requestFileHandling(formMapping: Map<String, Any?>, fileNameList: List<String>): ArrayList<BaseFile> {
+        val arrayList = arrayListOf<BaseFile>()
         formMapping.forEach { key, value ->
-            fileNameList.find { it.contains(key) }?.takeIf { value is PartData.FileItem }?.let {
+            fileNameList.find { it.contains(key) }?.takeIf { value is ArrayList<*> }?.let {
                 // do mapping
-                val partData = formMapping[key] as PartData.FileItem
-//                partData.forEac
+                val partDataList = formMapping[key] as ArrayList<PartData.FileItem>
+                var fileIndex = 1
+                partDataList.forEach {
+                    val image = Image().apply {
+                        partData = it
+                        index = fileIndex++
+                    }
+                    if (image is Image) {
+                        image.initMetaInfo()
+                    }
+                    arrayList.add(image)
+                }
             }
         }
+        return arrayList
     }
 }

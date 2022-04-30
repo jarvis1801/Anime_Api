@@ -23,12 +23,27 @@ fun Application.configureRouting() {
 private val routeClasses = listOf(
     AuthorRoute,
     WorkRoute,
+
+
     TagRoute,
+
+
     PainterRoute,
     PublishingHouseRoute,
     LibraryRoute,
+
+
     NovelRoute,
+    MangaRoute,
     VolumeRoute,
     ChapterRoute,
-    WebScrappingRoute()
+    MangaChapterRoute,
+
+
+    WebScrappingRoute(),
+    MangaImportRoute(),
+    EncryptedImageRoute,
+
+
+    ImageRoute,
 )

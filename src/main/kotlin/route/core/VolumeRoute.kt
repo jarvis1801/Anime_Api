@@ -25,6 +25,7 @@ object VolumeRoute : BaseEntryRoute<Volume>() {
         if (bookId !is String) return null
         when (type) {
             ACGType.NOVEL.type.lowercase() -> NovelRoute.updateVolumeIdAfterCreateVolume(obj._id, bookId).let { if (it) return obj }
+            ACGType.MANGA.type.lowercase() -> MangaRoute.updateVolumeIdAfterCreateVolume(obj._id, bookId).let { if (it) return obj }
         }
         return null
     }

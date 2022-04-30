@@ -1,6 +1,7 @@
 val ktorVersion: String by project
 val kotlinVersion: String by project
 val logbackVersion: String by project
+val twelvemonkeysVersion: String by project
 
 plugins {
     application
@@ -40,4 +41,15 @@ dependencies {
 
     // skrapeit
     implementation("it.skrape:skrapeit:1.2.1")
+
+    // image
+    implementation("com.twelvemonkeys.common:common-lang:$twelvemonkeysVersion")
+    implementation("com.twelvemonkeys.common:common-io:$twelvemonkeysVersion")
+    implementation("com.twelvemonkeys.common:common-image:$twelvemonkeysVersion")
+    implementation("com.twelvemonkeys.imageio:imageio-core:$twelvemonkeysVersion")
+    implementation("com.twelvemonkeys.imageio:imageio-metadata:$twelvemonkeysVersion")
+    implementation("com.twelvemonkeys.imageio:imageio-bmp:$twelvemonkeysVersion")
+    implementation("com.twelvemonkeys.imageio:imageio-jpeg:$twelvemonkeysVersion")
+    implementation("com.twelvemonkeys.imageio:imageio-tiff:$twelvemonkeysVersion")
+    implementation("com.twelvemonkeys.imageio:imageio-webp:$twelvemonkeysVersion")
 }

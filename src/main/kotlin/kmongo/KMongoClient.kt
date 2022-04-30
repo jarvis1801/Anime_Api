@@ -19,7 +19,11 @@ object KMongoClient {
     val libraryEntry = database.getCollection<Library>()
 
     val novelEntry = database.getCollection<Novel>()
+    val mangaEntry = database.getCollection<Manga>()
 
     val volumeEntry = database.getCollection<Volume>()
     val chapterEntry = database.getCollection<Chapter>()
+    val mangaChapterEntry = database.getCollection<MangaChapter>()
+
+    val imageEntry = database.getCollection<Image>()
 }

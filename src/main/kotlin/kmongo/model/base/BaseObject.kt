@@ -26,8 +26,8 @@ abstract class BaseObject<T>(
         return obj
     }
 
-    operator fun set(propName: String, value: Any) {
-        val property = this::class.memberProperties.find { it.name == propName }
+    operator fun set(propName: String, value: Any?) {
+        val property = this::class.memberProperties.find { it.name.equals(propName, true) }
         when (property) {
             is KMutableProperty<*> -> {
                 setValue("${property.returnType}", property.setter, value)

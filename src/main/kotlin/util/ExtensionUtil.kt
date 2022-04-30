@@ -7,6 +7,8 @@ import com.jarvis.acg.api.kmongo.model.base.BaseObject
 import org.bson.json.JsonWriterSettings
 import org.litote.kmongo.bson
 import org.litote.kmongo.json
+import java.io.File
+import java.net.URLDecoder
 
 object ExtensionUtil {
     inline fun <reified T> Gson.fromJson(json: String): T = fromJson(json, object: TypeToken<T>() {}.type)
@@ -29,5 +31,17 @@ object ExtensionUtil {
 
     fun String.replaceBreakLine(newValue: String = "\n"): String {
         return replace("\\n+".toRegex(), newValue)
+    }
+
+    fun File.returnFolderList() : ArrayList<File>? {
+        return listFiles()?.filter { it.isDirectory }?.toCollection(ArrayList())
+    }
+
+    fun File.returnFileList() : ArrayList<File>? {
+        return listFiles()?.filter { !it.isDirectory }?.toCollection(ArrayList())
+    }
+
+    fun String.decodeUTF8(): String? {
+        return URLDecoder.decode(this, "UTF-8")
     }
 }

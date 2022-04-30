@@ -2,6 +2,7 @@ package com.jarvis.acg.api.route.base
 
 import com.jarvis.acg.api.kmongo.model.base.BaseObject
 import com.jarvis.acg.api.model.SubPathEndpoint
+import com.jarvis.acg.api.model.file.BaseFile
 import com.jarvis.acg.api.util.ExtensionUtil.getResponse
 import com.jarvis.acg.api.util.ModelUtil
 import com.jarvis.acg.api.util.TranslationUtil
@@ -30,17 +31,18 @@ abstract class BaseEntryRoute<E : BaseObject<E>> : BaseRoute(), BaseEntryRouteIn
 
     protected open fun createHandling(requestFormMapping: HashMap<String, Any?>) : HashMap<String, Any?>? = null
     protected open fun createdHandling(obj: E, requestFormMapping: HashMap<String, Any?>) : E? = null
+    protected open suspend fun createdHandlingFile(obj: E, baseFileList: ArrayList<BaseFile>?) : E? = null
 
     protected open var isEnableDefaultGetById = true
     protected open var isEnableDefaultCreate = true
-    protected open var isEnableDefaulUpdate = true
+    protected open var isEnableDefaultUpdate = true
     protected open var isEnableDefaultDeleteById = true
 
     override fun createRoute(routing: Routing) = routing {
         route("/$entryPathSection") {
             if (isEnableDefaultGetById) get("{id}") { getById(call) }
             if (isEnableDefaultCreate) post("") { create(call) }
-            if (isEnableDefaulUpdate) put("{id}") { updateById(call) }
+            if (isEnableDefaultUpdate) put("{id}") { updateById(call) }
             if (isEnableDefaultDeleteById) delete("{idListStr}") { deleteByIdList(call) }
 
             get("list") { getResponseList(call) }
@@ -76,14 +78,15 @@ abstract class BaseEntryRoute<E : BaseObject<E>> : BaseRoute(), BaseEntryRouteIn
         // receive form param
 
         var requestFormMapping = ModelUtil().convertFormMapping(call.receiveMultipart(), trimList)
-        translationList.takeIf { !it.isNullOrEmpty() && !translationList.isNullOrEmpty() }?.let {
+        translationList?.takeIf { it.isNotEmpty() && !translationList.isNullOrEmpty() }?.let {
             requestFormMapping = TranslationUtil().convertPropertyToTranslation(requestFormMapping, translationList)
         }
-//        fileNameList.takeUnless { it.isNullOrEmpty() }.let { ModelUtil().requestFileHandling(requestFormMapping, it!!) }
+        val baseFileList = fileNameList?.takeIf { it.isNotEmpty() }?.let { ModelUtil().requestFileHandling(requestFormMapping, it) }
         val entry = createNewGenericObject()
         createHandling(requestFormMapping)
         entry.convertMappingToProperty(entry, requestFormMapping)
         createdHandling(entry, requestFormMapping)
+        createdHandlingFile(entry, baseFileList)
 
         // handle save file if needed
 
