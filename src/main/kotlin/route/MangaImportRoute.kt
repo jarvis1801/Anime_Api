@@ -1,18 +1,12 @@
 package com.jarvis.acg.api.route
 
-import com.jarvis.acg.api.kmongo.model.base.Translation
-import com.jarvis.acg.api.kmongo.model.core.Work
 import com.jarvis.acg.api.model.file.Image
 import com.jarvis.acg.api.route.base.BaseRoute
 import com.jarvis.acg.api.route.core.ImageRoute
-import com.jarvis.acg.api.route.core.MangaChapterRoute
-import com.jarvis.acg.api.route.core.WorkRoute
 import com.jarvis.acg.api.util.AutoImportUtil
 import com.jarvis.acg.api.util.ExtensionUtil.returnFileList
 import com.jarvis.acg.api.util.ExtensionUtil.returnFolderList
 import io.ktor.routing.*
-import org.litote.kmongo.div
-import org.litote.kmongo.eq
 import java.io.File
 
 class MangaImportRoute : BaseRoute() {
@@ -58,7 +52,7 @@ class MangaImportRoute : BaseRoute() {
                                 ImageRoute.createThumbnail(image)
                             }?.toCollection(ArrayList())
 
-                            AutoImportUtil.getOrCreateChapterVolume(volume._id, mangaChapterFolder.name, mediaIdList)
+                            AutoImportUtil.getOrCreateChapter(volume._id, mangaChapterFolder.name, mediaIdList)
                         }
                     }
                 }

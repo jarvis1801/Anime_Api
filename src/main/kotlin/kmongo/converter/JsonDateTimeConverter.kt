@@ -21,7 +21,7 @@ class JsonDateTimeConverter : Converter<Long?> {
     }
 
     companion object {
-        val DATE_TIME_FORMATTER: DateTimeFormatter = DateTimeFormatter.ISO_INSTANT
+        val DATE_TIME_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
             .withZone(ZoneId.of("UTC"))
     }
 }

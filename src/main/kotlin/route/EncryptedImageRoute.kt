@@ -12,8 +12,8 @@ import java.io.FileInputStream
 
 object EncryptedImageRoute : BaseRoute() {
 
-    const val PATH_MANGA_RESOURCE_ROOT = "D:\\Manga\\"
-
+//    const val PATH_MANGA_RESOURCE_ROOT = "D:\\Manga\\"
+    const val PATH_MANGA_RESOURCE_ROOT = "C:\\Users\\Jarvis\\Desktop\\test\\"
     override fun createRoute(routing: Routing) = routing {
         get("imageResource") {
             call.request.queryParameters["path"]?.let { filePath ->
@@ -26,6 +26,7 @@ object EncryptedImageRoute : BaseRoute() {
                         val encodeString = CipherUtil.encode(inputBytes)
 
                         call.respondText { encodeString ?: "" }
+//                        call.respondFile(file)
                     } else {
                         call.respondText("Error", status = HttpStatusCode.NotFound)
                     }

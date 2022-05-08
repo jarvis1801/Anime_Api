@@ -53,6 +53,7 @@ class WebScrappingRoute : BaseRoute() {
                             } else {
                                 val insertVolume = Volume().apply {
                                     name = Translation(tc = it.volumeName)
+                                    book_id = novel._id
                                 }
 
                                 KMongoClient.volumeEntry.insertOne(insertVolume)
@@ -62,7 +63,11 @@ class WebScrappingRoute : BaseRoute() {
 
                             it.chapterList?.forEach { skrapeChapter ->
                                 println("                            it.chapterList?.forEach { skrapeChapter ->")
+                                println("skrapeChapter" + skrapeChapter.chapterName)
+                                println("volume!!._id" + volume!!._id)
                                 val chapterDoc = SkrapeUtil().fetchChapter(skrapeChapter, "${urlPrefix}${skrapeChapter.chapterUrl}")
+
+                                println("chapterDoc.chapterName" + chapterDoc.chapterName)
 
                                 val chapterStatement = arrayOf(Chapter::volume_id eq volume!!._id, Chapter::name / Translation::tc eq chapterDoc.chapterName)
                                 ChapterRoute.getEntryByStatement(chapterStatement)?.let {} ?: run {

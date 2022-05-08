@@ -4,7 +4,6 @@ import com.jarvis.acg.api.kmongo.KMongoClient
 import com.jarvis.acg.api.kmongo.model.base.Translation
 import com.jarvis.acg.api.kmongo.model.core.*
 import com.jarvis.acg.api.route.core.*
-import org.litote.kmongo.`in`
 import org.litote.kmongo.div
 import org.litote.kmongo.eq
 
@@ -45,12 +44,12 @@ object AutoImportUtil {
         }
     }
 
-    suspend fun getOrCreateChapterVolume(volumeId: String, title: String, mediaIdList: ArrayList<String>?): MangaChapter {
+    suspend fun getOrCreateChapter(volumeId: String, title: String, mediaIdList: ArrayList<String>?): MangaChapter {
         val statement = arrayOf(MangaChapter::sectionName / Translation::tc eq title)
         return MangaChapterRoute.getEntryByStatement(statement) ?: run {
             val insertMangaChapter = MangaChapter().apply {
                 sectionName = Translation(tc = title)
-                imageList = mediaIdList
+                image_id_list = mediaIdList
             }
             KMongoClient.mangaChapterEntry.insertOne(insertMangaChapter)
             VolumeRoute.updateVolumeIdAfterCreateChapter(insertMangaChapter._id, volumeId)

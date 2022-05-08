@@ -31,7 +31,7 @@ object MangaChapterRoute: BaseEntryRoute<MangaChapter>() {
             ImageRoute.createThumbnail(image)
         }
 
-        obj.imageList = mediaIdList?.toCollection(ArrayList())
+        obj.image_id_list = mediaIdList?.toCollection(ArrayList())
         return obj
     }
 
