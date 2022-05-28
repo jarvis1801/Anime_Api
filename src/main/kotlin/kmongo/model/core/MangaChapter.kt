@@ -1,7 +1,7 @@
-package com.jarvis.acg.api.kmongo.model.core
+package com.jarvis.anime.api.kmongo.model.core
 
-import com.jarvis.acg.api.kmongo.model.base.BaseNameObject
-import com.jarvis.acg.api.kmongo.model.base.Translation
+import com.jarvis.anime.api.kmongo.model.base.BaseNameObject
+import com.jarvis.anime.api.kmongo.model.base.Translation
 
 class MangaChapter(
     var sectionName: Translation? = null,

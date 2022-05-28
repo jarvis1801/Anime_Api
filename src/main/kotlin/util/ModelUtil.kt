@@ -1,9 +1,9 @@
-package com.jarvis.acg.api.util
+package com.jarvis.anime.api.util
 
-import com.jarvis.acg.api.model.file.BaseFile
-import com.jarvis.acg.api.model.file.Image
-import com.jarvis.acg.api.util.ExtensionUtil.replaceBreakLine
-import com.jarvis.acg.api.util.ExtensionUtil.replaceWhiteSpace
+import com.jarvis.anime.api.model.file.BaseFile
+import com.jarvis.anime.api.model.file.Image
+import com.jarvis.anime.api.util.ExtensionUtil.replaceBreakLine
+import com.jarvis.anime.api.util.ExtensionUtil.replaceWhiteSpace
 import io.ktor.http.content.*
 
 class ModelUtil {

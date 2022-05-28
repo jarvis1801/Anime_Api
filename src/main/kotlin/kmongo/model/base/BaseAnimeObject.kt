@@ -1,6 +1,6 @@
-package com.jarvis.acg.api.kmongo.model.base
+package com.jarvis.anime.api.kmongo.model.base
 
-abstract class BaseACGObject<T>(
+abstract class BaseAnimeObject<T>(
     var extra_name: Translation? = null,
     var author_id_list: ArrayList<String>? = null,
     var work_id: String? = null,
@@ -8,7 +8,7 @@ abstract class BaseACGObject<T>(
     var volume_id_list: ArrayList<String>? = null
 ) : BaseObject<T>()
 
-enum class ACGType(val type: String) {
+enum class AnimeType(val type: String) {
     NOVEL("novel"),
     MANGA("manga"),
     ANIME("anime")

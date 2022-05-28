@@ -1,6 +1,6 @@
-package com.jarvis.acg.api.model.response.base
+package com.jarvis.anime.api.model.response.base
 
-import com.jarvis.acg.api.kmongo.model.base.BaseObject
+import com.jarvis.anime.api.kmongo.model.base.BaseObject
 import java.time.LocalDateTime
 
 @Suppress("PropertyName")

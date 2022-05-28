@@ -1,4 +1,4 @@
-package com.jarvis.acg.api.model.file
+package com.jarvis.anime.api.model.file
 
 import io.ktor.http.content.*
 import java.io.ByteArrayInputStream

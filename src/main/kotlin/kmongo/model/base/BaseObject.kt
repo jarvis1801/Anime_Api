@@ -1,6 +1,6 @@
-package com.jarvis.acg.api.kmongo.model.base
+package com.jarvis.anime.api.kmongo.model.base
 
-import com.jarvis.acg.api.util.DateTimeUtil
+import com.jarvis.anime.api.util.DateTimeUtil
 import kotlinx.serialization.Contextual
 import org.bson.types.ObjectId
 import org.litote.kmongo.id.toId

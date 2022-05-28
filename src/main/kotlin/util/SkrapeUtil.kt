@@ -1,10 +1,10 @@
-package com.jarvis.acg.api.util
+package com.jarvis.anime.api.util
 
-import com.jarvis.acg.api.model.skrape.SkrapeNovel
-import com.jarvis.acg.api.model.skrape.SkrapeNovelChapter
-import com.jarvis.acg.api.model.skrape.SkrapeNovelVolume
-import com.jarvis.acg.api.util.ExtensionUtil.replaceBreakLine
-import com.jarvis.acg.api.util.ExtensionUtil.replaceWhiteSpace
+import com.jarvis.anime.api.model.skrape.SkrapeNovel
+import com.jarvis.anime.api.model.skrape.SkrapeNovelChapter
+import com.jarvis.anime.api.model.skrape.SkrapeNovelVolume
+import com.jarvis.anime.api.util.ExtensionUtil.replaceBreakLine
+import com.jarvis.anime.api.util.ExtensionUtil.replaceWhiteSpace
 import it.skrape.core.htmlDocument
 import it.skrape.fetcher.BrowserFetcher
 import it.skrape.fetcher.response

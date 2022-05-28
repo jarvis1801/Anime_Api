@@ -1,7 +1,7 @@
-package com.jarvis.acg.api.kmongo.model.core
+package com.jarvis.anime.api.kmongo.model.core
 
-import com.jarvis.acg.api.kmongo.model.base.BaseACGObject
+import com.jarvis.anime.api.kmongo.model.base.BaseAnimeObject
 
 class Anime(
 
-) : BaseACGObject<Anime>()
+) : BaseAnimeObject<Anime>()

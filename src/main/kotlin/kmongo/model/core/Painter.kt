@@ -1,5 +1,5 @@
-package com.jarvis.acg.api.kmongo.model.core
+package com.jarvis.anime.api.kmongo.model.core
 
-import com.jarvis.acg.api.kmongo.model.base.Person
+import com.jarvis.anime.api.kmongo.model.base.Person
 
 class Painter : Person<Painter>()

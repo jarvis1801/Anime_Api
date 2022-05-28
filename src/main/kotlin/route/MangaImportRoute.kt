@@ -1,11 +1,11 @@
-package com.jarvis.acg.api.route
+package com.jarvis.anime.api.route
 
-import com.jarvis.acg.api.model.file.Image
-import com.jarvis.acg.api.route.base.BaseRoute
-import com.jarvis.acg.api.route.core.ImageRoute
-import com.jarvis.acg.api.util.AutoImportUtil
-import com.jarvis.acg.api.util.ExtensionUtil.returnFileList
-import com.jarvis.acg.api.util.ExtensionUtil.returnFolderList
+import com.jarvis.anime.api.model.file.Image
+import com.jarvis.anime.api.route.base.BaseRoute
+import com.jarvis.anime.api.route.core.ImageRoute
+import com.jarvis.anime.api.util.AutoImportUtil
+import com.jarvis.anime.api.util.ExtensionUtil.returnFileList
+import com.jarvis.anime.api.util.ExtensionUtil.returnFolderList
 import io.ktor.routing.*
 import java.io.File
 

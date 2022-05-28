@@ -1,4 +1,4 @@
-package com.jarvis.acg.api
+package com.jarvis.anime.api
 
 class ApplicationTest {
 }

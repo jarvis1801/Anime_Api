@@ -1,1 +1,1 @@
-rootProject.name = "ACG Api"
+rootProject.name = "Anime Api"

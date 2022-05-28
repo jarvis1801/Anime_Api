@@ -1,4 +1,4 @@
-package com.jarvis.acg.api.model
+package com.jarvis.anime.api.model
 
 import io.ktor.http.cio.*
 import org.bson.conversions.Bson

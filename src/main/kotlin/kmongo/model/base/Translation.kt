@@ -1,4 +1,4 @@
-package com.jarvis.acg.api.kmongo.model.base
+package com.jarvis.anime.api.kmongo.model.base
 
 import kotlinx.serialization.Serializable
 import kotlin.reflect.KMutableProperty

@@ -1,13 +1,10 @@
-package com.jarvis.acg.api.model.response
+package com.jarvis.anime.api.model.response
 
-import com.jarvis.acg.api.kmongo.model.base.BaseACGObject
-import com.jarvis.acg.api.kmongo.model.core.Library
-import com.jarvis.acg.api.kmongo.model.core.Novel
-import com.jarvis.acg.api.model.response.base.BaseACGResponse
+import com.jarvis.anime.api.kmongo.model.core.Novel
+import com.jarvis.anime.api.model.response.base.BaseAnimeResponse
 import java.util.*
-import kotlin.collections.ArrayList
 
-class NovelResponse(obj: Novel) : BaseACGResponse(obj) {
+class NovelResponse(obj: Novel) : BaseAnimeResponse(obj) {
     var painter_list: List<PainterResponse>? = null
     var publishing_house_list: List<PublishingHouseResponse>? = null
     var library_list: List<LibraryResponse>? = null

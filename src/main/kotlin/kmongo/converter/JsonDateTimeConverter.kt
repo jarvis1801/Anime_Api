@@ -1,4 +1,4 @@
-package com.jarvis.acg.api.kmongo.converter
+package com.jarvis.anime.api.kmongo.converter
 
 import org.bson.json.Converter
 import org.bson.json.StrictJsonWriter

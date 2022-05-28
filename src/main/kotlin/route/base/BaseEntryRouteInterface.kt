@@ -1,6 +1,6 @@
-package com.jarvis.acg.api.route.base
+package com.jarvis.anime.api.route.base
 
-import com.jarvis.acg.api.kmongo.model.base.BaseObject
+import com.jarvis.anime.api.kmongo.model.base.BaseObject
 import io.ktor.routing.*
 
 interface BaseEntryRouteInterface<E: BaseObject<E>> {

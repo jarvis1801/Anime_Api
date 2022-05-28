@@ -1,8 +1,8 @@
-package com.jarvis.acg.api.route
+package com.jarvis.anime.api.route
 
-import com.jarvis.acg.api.route.base.BaseRoute
-import com.jarvis.acg.api.util.CipherUtil
-import com.jarvis.acg.api.util.ExtensionUtil.decodeUTF8
+import com.jarvis.anime.api.route.base.BaseRoute
+import com.jarvis.anime.api.util.CipherUtil
+import com.jarvis.anime.api.util.ExtensionUtil.decodeUTF8
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*

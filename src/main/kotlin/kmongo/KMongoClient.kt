@@ -1,8 +1,8 @@
-package com.jarvis.acg.api.kmongo
+package com.jarvis.anime.api.kmongo
 
-import com.jarvis.acg.api.kmongo.model.core.Chapter
-import com.jarvis.acg.api.kmongo.model.core.*
-import com.jarvis.acg.api.util.EnvironmentUtil
+import com.jarvis.anime.api.kmongo.model.core.Chapter
+import com.jarvis.anime.api.kmongo.model.core.*
+import com.jarvis.anime.api.util.EnvironmentUtil
 import org.litote.kmongo.KMongo
 import org.litote.kmongo.getCollection
 

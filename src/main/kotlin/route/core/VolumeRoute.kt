@@ -1,10 +1,9 @@
-package com.jarvis.acg.api.route.core
+package com.jarvis.anime.api.route.core
 
-import com.jarvis.acg.api.kmongo.KMongoClient
-import com.jarvis.acg.api.kmongo.model.base.ACGType
-import com.jarvis.acg.api.kmongo.model.core.Volume
-import com.jarvis.acg.api.model.response.VolumeResponse
-import com.jarvis.acg.api.route.base.BaseEntryRoute
+import com.jarvis.anime.api.kmongo.KMongoClient
+import com.jarvis.anime.api.kmongo.model.base.AnimeType
+import com.jarvis.anime.api.kmongo.model.core.Volume
+import com.jarvis.anime.api.route.base.BaseEntryRoute
 import com.mongodb.client.MongoCollection
 import io.ktor.routing.*
 import org.bson.conversions.Bson
@@ -20,12 +19,12 @@ object VolumeRoute : BaseEntryRoute<Volume>() {
     override fun createNewGenericObject(): Volume { return Volume() }
 
     override fun createdHandling(obj: Volume, requestFormMapping: HashMap<String, Any?>): Volume? {
-        val type = requestFormMapping["acg_type"]
+        val type = requestFormMapping["anime_type"]
         val bookId = requestFormMapping["book_id"]
         if (bookId !is String) return null
         when (type) {
-            ACGType.NOVEL.type.lowercase() -> NovelRoute.updateVolumeIdAfterCreateVolume(obj._id, bookId).let { if (it) return obj }
-            ACGType.MANGA.type.lowercase() -> MangaRoute.updateVolumeIdAfterCreateVolume(obj._id, bookId).let { if (it) return obj }
+            AnimeType.NOVEL.type.lowercase() -> NovelRoute.updateVolumeIdAfterCreateVolume(obj._id, bookId).let { if (it) return obj }
+            AnimeType.MANGA.type.lowercase() -> MangaRoute.updateVolumeIdAfterCreateVolume(obj._id, bookId).let { if (it) return obj }
         }
         return null
     }

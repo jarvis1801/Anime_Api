@@ -1,11 +1,11 @@
-package com.jarvis.acg.api.route.core
+package com.jarvis.anime.api.route.core
 
-import com.jarvis.acg.api.kmongo.KMongoClient
-import com.jarvis.acg.api.kmongo.model.core.Chapter
-import com.jarvis.acg.api.kmongo.model.core.Volume
-import com.jarvis.acg.api.model.response.ChapterResponse
-import com.jarvis.acg.api.route.base.BaseEntryRoute
-import com.jarvis.acg.api.util.ExtensionUtil.getResponse
+import com.jarvis.anime.api.kmongo.KMongoClient
+import com.jarvis.anime.api.kmongo.model.core.Chapter
+import com.jarvis.anime.api.kmongo.model.core.Volume
+import com.jarvis.anime.api.model.response.ChapterResponse
+import com.jarvis.anime.api.route.base.BaseEntryRoute
+import com.jarvis.anime.api.util.ExtensionUtil.getResponse
 import com.mongodb.client.MongoCollection
 import io.ktor.application.*
 import io.ktor.response.*

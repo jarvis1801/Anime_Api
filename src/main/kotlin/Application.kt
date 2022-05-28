@@ -1,7 +1,7 @@
-package com.jarvis.acg.api
+package com.jarvis.anime.api
 
-import com.jarvis.acg.api.App.initApp
-import com.jarvis.acg.api.route.configureRouting
+import com.jarvis.anime.api.App.initApp
+import com.jarvis.anime.api.route.configureRouting
 import io.ktor.application.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)

@@ -1,4 +1,4 @@
-package com.jarvis.acg.api.util
+package com.jarvis.anime.api.util
 
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime

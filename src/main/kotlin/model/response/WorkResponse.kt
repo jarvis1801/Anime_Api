@@ -1,7 +1,7 @@
-package com.jarvis.acg.api.model.response
+package com.jarvis.anime.api.model.response
 
-import com.jarvis.acg.api.kmongo.model.core.Work
-import com.jarvis.acg.api.model.response.base.BaseNameResponse
+import com.jarvis.anime.api.kmongo.model.core.Work
+import com.jarvis.anime.api.model.response.base.BaseNameResponse
 
 class WorkResponse(work: Work) : BaseNameResponse(work) {
     var thumbnail: ArrayList<String?>? = null

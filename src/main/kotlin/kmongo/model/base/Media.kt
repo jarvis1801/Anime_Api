@@ -1,4 +1,4 @@
-package com.jarvis.acg.api.kmongo.model.base
+package com.jarvis.anime.api.kmongo.model.base
 
 abstract class Media<T>(
     var url: String? = null,

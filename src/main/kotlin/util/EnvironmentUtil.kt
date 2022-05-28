@@ -1,7 +1,7 @@
-package com.jarvis.acg.api.util
+package com.jarvis.anime.api.util
 
-import com.jarvis.acg.api.App
-import com.jarvis.acg.api.env
+import com.jarvis.anime.api.App
+import com.jarvis.anime.api.env
 
 class EnvironmentUtil {
     companion object {
@@ -12,10 +12,10 @@ class EnvironmentUtil {
 
     fun getMongoDBName() : String {
         return when (App.application?.env) {
-            ENV_PROD -> "acg"
-            ENV_UAT -> "acg_uat"
-            ENV_DEV -> "acg_dev"
-            else -> "acg"
+            ENV_PROD -> "anime"
+            ENV_UAT -> "anime_uat"
+            ENV_DEV -> "anime_dev"
+            else -> "anime"
         }
     }
 }

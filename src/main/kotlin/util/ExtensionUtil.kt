@@ -1,9 +1,9 @@
-package com.jarvis.acg.api.util
+package com.jarvis.anime.api.util
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.jarvis.acg.api.kmongo.converter.JsonDateTimeConverter
-import com.jarvis.acg.api.kmongo.model.base.BaseObject
+import com.jarvis.anime.api.kmongo.converter.JsonDateTimeConverter
+import com.jarvis.anime.api.kmongo.model.base.BaseObject
 import org.bson.json.JsonWriterSettings
 import org.litote.kmongo.bson
 import org.litote.kmongo.json

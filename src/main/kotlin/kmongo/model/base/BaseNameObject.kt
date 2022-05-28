@@ -1,4 +1,4 @@
-package com.jarvis.acg.api.kmongo.model.base
+package com.jarvis.anime.api.kmongo.model.base
 
 abstract class BaseNameObject<T>(
     var name: Translation? = null,

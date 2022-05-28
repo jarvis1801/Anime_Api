@@ -1,4 +1,4 @@
-package com.jarvis.acg.api.model.skrape
+package com.jarvis.anime.api.model.skrape
 
 class SkrapeNovel(
     var title: String? = "",

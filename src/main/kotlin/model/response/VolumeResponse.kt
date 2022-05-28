@@ -1,8 +1,8 @@
-package com.jarvis.acg.api.model.response
+package com.jarvis.anime.api.model.response
 
-import com.jarvis.acg.api.kmongo.model.base.Translation
-import com.jarvis.acg.api.kmongo.model.core.Volume
-import com.jarvis.acg.api.model.response.base.BaseNameResponse
+import com.jarvis.anime.api.kmongo.model.base.Translation
+import com.jarvis.anime.api.kmongo.model.core.Volume
+import com.jarvis.anime.api.model.response.base.BaseNameResponse
 
 class VolumeResponse(obj: Volume) : BaseNameResponse(obj) {
     var order: Int? = null

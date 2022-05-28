@@ -1,9 +1,9 @@
-package com.jarvis.acg.api.util
+package com.jarvis.anime.api.util
 
-import com.jarvis.acg.api.kmongo.KMongoClient
-import com.jarvis.acg.api.kmongo.model.base.Translation
-import com.jarvis.acg.api.kmongo.model.core.*
-import com.jarvis.acg.api.route.core.*
+import com.jarvis.anime.api.kmongo.KMongoClient
+import com.jarvis.anime.api.kmongo.model.base.Translation
+import com.jarvis.anime.api.kmongo.model.core.*
+import com.jarvis.anime.api.route.core.*
 import org.litote.kmongo.div
 import org.litote.kmongo.eq
 

@@ -1,6 +1,6 @@
-package com.jarvis.acg.api.route
+package com.jarvis.anime.api.route
 
-import com.jarvis.acg.api.route.core.*
+import com.jarvis.anime.api.route.core.*
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*

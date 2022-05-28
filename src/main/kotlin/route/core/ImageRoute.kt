@@ -1,8 +1,8 @@
-package com.jarvis.acg.api.route.core
+package com.jarvis.anime.api.route.core
 
-import com.jarvis.acg.api.kmongo.KMongoClient
-import com.jarvis.acg.api.kmongo.model.core.Image
-import com.jarvis.acg.api.route.base.BaseEntryRoute
+import com.jarvis.anime.api.kmongo.KMongoClient
+import com.jarvis.anime.api.kmongo.model.core.Image
+import com.jarvis.anime.api.route.base.BaseEntryRoute
 import com.mongodb.client.MongoCollection
 import io.ktor.routing.*
 
@@ -20,7 +20,7 @@ object ImageRoute : BaseEntryRoute<Image>() {
 
     }
 
-    suspend fun createThumbnail(image: com.jarvis.acg.api.model.file.Image, chapterId: String? = null): String {
+    suspend fun createThumbnail(image: com.jarvis.anime.api.model.file.Image, chapterId: String? = null): String {
         val entry = Image().apply {
             imageWidth = image.imageWidth
             imageHeight = image.imageHeight

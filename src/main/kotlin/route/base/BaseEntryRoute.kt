@@ -1,11 +1,11 @@
-package com.jarvis.acg.api.route.base
+package com.jarvis.anime.api.route.base
 
-import com.jarvis.acg.api.kmongo.model.base.BaseObject
-import com.jarvis.acg.api.model.SubPathEndpoint
-import com.jarvis.acg.api.model.file.BaseFile
-import com.jarvis.acg.api.util.ExtensionUtil.getResponse
-import com.jarvis.acg.api.util.ModelUtil
-import com.jarvis.acg.api.util.TranslationUtil
+import com.jarvis.anime.api.kmongo.model.base.BaseObject
+import com.jarvis.anime.api.model.SubPathEndpoint
+import com.jarvis.anime.api.model.file.BaseFile
+import com.jarvis.anime.api.util.ExtensionUtil.getResponse
+import com.jarvis.anime.api.util.ModelUtil
+import com.jarvis.anime.api.util.TranslationUtil
 import com.mongodb.client.MongoCollection
 import io.ktor.application.*
 import io.ktor.http.*

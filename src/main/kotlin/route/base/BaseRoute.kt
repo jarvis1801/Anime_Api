@@ -1,4 +1,4 @@
-package com.jarvis.acg.api.route.base
+package com.jarvis.anime.api.route.base
 
 import io.ktor.routing.*
 
