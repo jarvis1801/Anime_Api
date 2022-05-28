@@ -44,16 +44,24 @@ object AutoImportUtil {
         }
     }
 
-    suspend fun getOrCreateChapter(volumeId: String, title: String, mediaIdList: ArrayList<String>?): MangaChapter {
+    suspend fun createChapter(volumeId: String, title: String): MangaChapter? {
         val statement = arrayOf(MangaChapter::sectionName / Translation::tc eq title)
-        return MangaChapterRoute.getEntryByStatement(statement) ?: run {
+        val entry = MangaChapterRoute.getEntryByStatement(statement)
+        if (entry != null) return null
+        return run {
             val insertMangaChapter = MangaChapter().apply {
                 sectionName = Translation(tc = title)
-                image_id_list = mediaIdList
+                volume_id = volumeId
             }
-            KMongoClient.mangaChapterEntry.insertOne(insertMangaChapter)
-            VolumeRoute.updateVolumeIdAfterCreateChapter(insertMangaChapter._id, volumeId)
             insertMangaChapter
+        }
+    }
+
+    suspend fun insertChapter(mangaChapter: MangaChapter, volumeId: String, mediaIdList: ArrayList<String>?) {
+        mangaChapter.apply {
+            image_id_list = mediaIdList
+            KMongoClient.mangaChapterEntry.insertOne(mangaChapter)
+            VolumeRoute.updateVolumeIdAfterCreateChapter(mangaChapter._id, volumeId)
         }
     }
 }

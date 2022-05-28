@@ -2,6 +2,7 @@ package com.jarvis.acg.api.model.file
 
 import io.ktor.http.content.*
 import java.io.File
+import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.io.path.absolutePathString
 
@@ -14,6 +15,7 @@ abstract class BaseFile {
     open var savePathPrefix: String? = null
     open var isCreateNewFile = true
     open var fileBytes: ByteArray? = null
+    open var fileSize: Int? = null
 
     private fun getModifyFileName() : String? {
         val index = if (index <= 0) {

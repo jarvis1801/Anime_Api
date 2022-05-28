@@ -46,13 +46,21 @@ class MangaImportRoute : BaseRoute() {
                             }
                             val prefixPath = "${work.name?.tc}\\${volume.name?.tc}\\${mangaChapterFolder.name}"
 
-                            val mediaIdList = imageList?.map { image ->
-                                image.isCreateNewFile = false
-                                image.savePathPrefix = prefixPath
-                                ImageRoute.createThumbnail(image)
-                            }?.toCollection(ArrayList())
+                            val chapter = AutoImportUtil.createChapter(volume._id, mangaChapterFolder.name)
 
-                            AutoImportUtil.getOrCreateChapter(volume._id, mangaChapterFolder.name, mediaIdList)
+                            /**
+                             * chapter == null -> currently has the entry,
+                             * chapter != null -> create entry
+                             */
+                            if (chapter != null) {
+                                val mediaIdList = imageList?.map { image ->
+                                    image.isCreateNewFile = false
+                                    image.savePathPrefix = prefixPath
+                                    ImageRoute.createThumbnail(image, chapter._id)
+                                }?.toCollection(ArrayList())
+
+                                AutoImportUtil.insertChapter(chapter, volume._id, mediaIdList)
+                            }
                         }
                     }
                 }

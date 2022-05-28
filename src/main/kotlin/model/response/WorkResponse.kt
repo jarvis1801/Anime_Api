@@ -8,6 +8,6 @@ class WorkResponse(work: Work) : BaseNameResponse(work) {
     var tag_list: List<TagResponse>? = null
 
     init {
-        thumbnail = work.thumbnail
+        thumbnail = work.thumbnail_id_list
     }
 }

@@ -24,10 +24,11 @@ object WorkRoute : BaseEntryRoute<Work>() {
 
         val mediaIdList = imageList?.map { image ->
             image.savePathPrefix = "${obj.name?.tc}"
+//            ImageRoute.createThumbnail(image, chapter._id)
             ImageRoute.createThumbnail(image)
         }
 
-        obj.thumbnail = mediaIdList?.toCollection(ArrayList())
+        obj.thumbnail_id_list = mediaIdList?.toCollection(ArrayList())
         return obj
     }
 }

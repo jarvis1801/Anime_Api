@@ -28,6 +28,7 @@ object MangaChapterRoute: BaseEntryRoute<MangaChapter>() {
         val mediaIdList = imageList?.map { image ->
             image.isCreateNewFile = false
             image.savePathPrefix = prefixPath
+//            ImageRoute.createThumbnail(image, chapter._id)
             ImageRoute.createThumbnail(image)
         }
 

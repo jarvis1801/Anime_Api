@@ -12,6 +12,7 @@ class Image(
     fun initMetaInfo() {
         partData?.let {
             fileBytes = it.streamProvider().readBytes()
+            fileSize = fileBytes?.size
             val input = ImageIO.createImageInputStream(ByteArrayInputStream(fileBytes))
             val readers = ImageIO.getImageReaders(input)
             while (readers.hasNext()) {
@@ -24,6 +25,7 @@ class Image(
 
         file?.let {
             fileBytes = it.readBytes()
+            fileSize = fileBytes?.size
             val input = ImageIO.createImageInputStream(ByteArrayInputStream(fileBytes))
             val readers = ImageIO.getImageReaders(input)
             while (readers.hasNext()) {
