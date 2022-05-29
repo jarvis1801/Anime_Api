@@ -12,6 +12,7 @@ import java.io.File
 class MangaImportRoute : BaseRoute() {
     companion object {
         const val PATH_MANGA_PATH = "D:\\Manga\\"
+        const val PATH_TEST = "C:\\Users\\Jarvis\\Desktop\\test\\"
     }
     override fun createRoute(routing: Routing) = routing {
         post("mangaImport") {

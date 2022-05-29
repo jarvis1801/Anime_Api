@@ -4,7 +4,9 @@ import com.jarvis.anime.api.kmongo.KMongoClient
 import com.jarvis.anime.api.kmongo.model.core.Image
 import com.jarvis.anime.api.route.base.BaseEntryRoute
 import com.mongodb.client.MongoCollection
+import io.ktor.application.*
 import io.ktor.routing.*
+import org.litote.kmongo.eq
 
 object ImageRoute : BaseEntryRoute<Image>() {
     override var modelEntry: MongoCollection<Image> = KMongoClient.imageEntry
@@ -12,7 +14,17 @@ object ImageRoute : BaseEntryRoute<Image>() {
     override var isEnableDefaultCreate: Boolean = false
     override var isEnableDefaultUpdate: Boolean = false
 
-    override fun initExtraRoute(route: Route) {}
+    override fun initExtraRoute(route: Route) = route {
+        get("list/chapter/{chapterId}") {
+            getListByChapterId(call)
+        }
+    }
+
+    private suspend fun getListByChapterId(call: ApplicationCall) {
+        call.parameters["chapterId"]?.let { id ->
+            getResponseListByStatement(Image::chapter_id eq id, call)
+        }
+    }
 
     override fun createNewGenericObject(): Image { return Image() }
 
